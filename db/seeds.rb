@@ -7,10 +7,14 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 password = "abcd1234"
 
-User.create!(name: "Noname", email: "no@email.com", password: password, password_confirmation: password)
+first_user = User.create!(name: "Noname", email: "no@email.com", password: password, password_confirmation: password)
 
-1.upto(14) do |n|
+2.upto(15) do |n|
   name = "User #{n}"
   email = "user-#{n}@server.com"
-  User.create!(name: name, email: email, password: password, password_confirmation: password)
+  user = User.create!(name: name, email: email, password: password, password_confirmation: password)
+
+  Relationship.create!(followed: user, follower: first_user)
+
+  Relationship.create!(followed: first_user, follower: user)
 end

@@ -82,6 +82,37 @@ aside {
   margin-top: 15px;
 }
 
+.stats {
+  overflow: auto;
+  margin-top: 0;
+  padding: 0;
+}
+
+.stats a {
+  float: left;
+  padding: 0 10px;
+  border-left: 1px solid $gray-lighter;
+  color: gray;
+}
+
+.stats a:first-child {
+  padding-left: 0;
+  border: 0;
+}
+
+.stats a:hover {
+  text-decoration: none;
+  color: blue;
+}
+
+.stats strong {
+  display: block;
+}
+
+.follow_form {
+  margin-top: 30px;
+}
+
 /* miscellaneous */
 
 .users li {
