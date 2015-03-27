@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:name, :email, :password)}
     devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:name, :email, :password, :current_password)}
   end
+
+  def logged_in_user
+    unless user_signed_in?
+      flash[:danger] = "Please log in."
+      redirect_to new_user_session_url
+    end
+  end
 end
