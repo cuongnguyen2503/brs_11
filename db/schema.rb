@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326073823) do
+ActiveRecord::Schema.define(version: 20150330135249) do
+
+  create_table "books", force: :cascade do |t|
+    t.string   "title",          limit: 255
+    t.date     "publish_date"
+    t.string   "author",         limit: 255
+    t.integer  "number_of_page", limit: 4
+    t.integer  "category_id",    limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id", limit: 4
@@ -41,4 +59,5 @@ ActiveRecord::Schema.define(version: 20150326073823) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "books", "categories"
 end

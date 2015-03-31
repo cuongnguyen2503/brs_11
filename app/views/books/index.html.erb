@@ -1,0 +1,9 @@
+<% provide :title, 'All books' %>
+<div>
+  <h1>All books</h1>
+  <%= will_paginate %>
+  <ol class="books">
+    <%= render @books %>
+  </ol>
+  <%= will_paginate %>
+</div>
