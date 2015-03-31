@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
-  resources :categories
+  resources :categories 
+
   resources :books
 
   # The priority is based upon order of creation: first created -> highest priority.

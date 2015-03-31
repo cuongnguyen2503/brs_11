@@ -1,0 +1,13 @@
+<%= render 'shared/error_messages', object: f.object %>
+
+<%= select_tag :category_id, options_for_select(@categories, selected: params[:category_id]), class: "form-control" %>
+
+<div class = "field">
+  <%= f.label "Title" %>
+  <%= f.text_field :title, placeholder: "book title", class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= f.label "Author" %>
+  <%= f.text_field :author, placeholder: "author", class: "form-control" %>
+</div>
