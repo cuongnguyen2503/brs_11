@@ -1,0 +1,15 @@
+<% provide :title, @title %>
+
+<div class="row">
+  <h1><%= @title %></h1>
+
+  <% if @users.any? %>
+    <%= will_paginate @users %>
+
+    <ul class="users">
+      <%= render @users %>
+    </ul>
+
+    <%= will_paginate @users %>
+  <% end %>
+</div>

@@ -4,4 +4,6 @@ class Relationship < ActiveRecord::Base
 
   validates :follower_id, presence: true
   validates :followed_id, presence: true
+
+  scope :followed_of, ->(user_id) {where follower_id: user_id}
 end

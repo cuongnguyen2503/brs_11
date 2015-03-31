@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :read_statuses, dependent: :destroy
+  has_many :activities, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -26,5 +28,19 @@ class User < ActiveRecord::Base
 
   def is_admin_user?
     admin?
+  end
+
+  def feed
+    followed_ids = Relationship.followed_of(id).pluck :followed_id
+    users_ids = followed_ids.push id
+    Activity.owned_by users_ids
+  end
+
+  def like_activity activity
+    likes.create user_id: id, activity_id: activity.id
+  end
+
+  def unlike_activity activity
+    likes.find_by(user_id: id, activity_id: activity.id).destroy
   end
 end
