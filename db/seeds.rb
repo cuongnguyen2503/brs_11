@@ -18,3 +18,10 @@ first_user = User.create!(name: "Noname", email: "no@email.com", password: passw
 
   Relationship.create!(followed: first_user, follower: user)
 end
+
+for i in 1..5
+  category = Category.create!(name: "category" + i.to_s)
+  for j in 1..15
+    category.books.create!(title: "title" + j.to_s, publish_date: nil, author: "author" + i.to_s, number_of_page: i*j)
+  end
+end
