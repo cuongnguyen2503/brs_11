@@ -1,6 +1,13 @@
 <li>
-  <span><%= book.title %></span>
+  <span><%= link_to book.title, book_path(book) %></span>
   <span><%= book.author %></span>
   <span><%= book.publish_date %></span>
   <span><%= book.number_of_page %></span>
+  <% if current_user.is_admin_user? %>
+    <span>
+      <%= link_to "Edit", edit_book_path(book) %> 
+      | <%= link_to "delete", book, method: :delete,
+                                    data: {confirm: "You sure?"} %>   
+    </span> 
+  <% end %>
 </li>

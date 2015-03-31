@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330135249) do
+ActiveRecord::Schema.define(version: 20150331063544) do
 
   create_table "books", force: :cascade do |t|
     t.string   "title",          limit: 255
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20150330135249) do
   add_index "relationships", ["followed_id", "follower_id"], name: "index_relationships_on_followed_id_and_follower_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255, default: "",    null: false
+    t.string   "encrypted_password",     limit: 255, default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150330135249) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name",                   limit: 255
+    t.boolean  "admin",                  limit: 1,   default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
