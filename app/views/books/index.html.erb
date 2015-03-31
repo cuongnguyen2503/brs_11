@@ -1,9 +1,25 @@
 <% provide :title, 'All books' %>
 <div>
   <h1>All books</h1>
-  <%= will_paginate %>
-  <ol class="books">
-    <%= render @books %>
-  </ol>
-  <%= will_paginate %>
+  <div>
+    <%= form_tag books_path, method: :get, class: "form-inline" do %>
+      <%= label_tag :category_id, 'Category: ' %>
+      <%= select_tag :category_id, options_for_select(@categories, selected: params[:category_id]),
+        class: "form-control" %>
+      <%= label_tag :title, 'Title: ' %>
+      <%= text_field_tag :title, nil, placeholder: params[:title], class: "form-control" %>
+      <%= label_tag :title, 'Author: ' %>
+      <%= text_field_tag :author, nil, placeholder: params[:author], class: "form-control" %>
+      <%= submit_tag "Search", class: "btn-primary form-control" %>
+    <% end %>
+  </div>
+  <div>
+    <ol>
+    <h2>Result: </h2>
+    <%= will_paginate %>
+    <ol class="books">
+      <%= render @books %>
+    </ol>
+    <%= will_paginate %>
+  </div>
 </div>
