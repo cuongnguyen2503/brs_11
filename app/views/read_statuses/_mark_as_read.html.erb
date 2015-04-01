@@ -1,0 +1,8 @@
+<li class = "form-inline">
+  <%= form_for ReadStatus.new do |f| %>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :book_id, @book.id %>
+    <%= hidden_field_tag :status, message %>
+    <%= f.submit "Mark as " + message, class: "btn-primary form-control" %>
+  <% end %>
+</li>
