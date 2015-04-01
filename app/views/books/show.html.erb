@@ -1,0 +1,21 @@
+<% provide(:title, 'Review book') %>
+<h1><%= @book.title %></h1>
+<h2><%= @book.author %></h2>
+<div>
+  <div class = "col-md-10">
+    <b>Picture present for book</b>
+  </div>
+  <div class = "col-md-2">
+      <%= label_tag @status %>
+      <% if @status == "read" %>
+        <%= render partial: 'read_statuses/mark_as_read', locals: {message: "reading"} %>
+      <% elsif @status == "reading" %>
+        <%= render partial: 'read_statuses/mark_as_read', locals: {message: "read"} %>
+      <% else %>
+        <%= render partial: 'read_statuses/mark_as_read', locals: {message: "reading"} %>
+        <%= render partial: 'read_statuses/mark_as_read', locals: {message: "read"} %>
+      <% end %>
+  </div>
+</div>
+<h3><%= @book.number_of_page %></h3>
+<h3><%= @book.publish_date %></h3>

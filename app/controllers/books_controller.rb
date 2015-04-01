@@ -40,14 +40,16 @@ class BooksController < ApplicationController
   end
 
   def show
-
+    @book = Book.find params[:id]
+    @readstatus = ReadStatus.latest current_user.id, @book.id
+    @status = @readstatus.first.status if @readstatus.present?
   end
 
   def destroy
     @book = Book.find params[:id]
     @book.destroy
     flash[:success] = "Book deleted"
-    redirect_to request.referrer || root_url    
+    redirect_to request.referrer || root_url
   end
 
   private
@@ -58,7 +60,7 @@ class BooksController < ApplicationController
 
   def admin_user
     redirect_to(root_url) unless current_user.admin?
-  end   
+  end
 
   def categories_select_tag
     @categories = Category.all.map{|c| [c.name, c.id]}
