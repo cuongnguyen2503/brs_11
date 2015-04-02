@@ -1,0 +1,27 @@
+<li class="activity-show">
+  <div class="user-gravatar-div">
+    <%= link_to gravatar_for(activity.user, size: 50), activity.user %>
+  </div>
+  <div class="activity-div">
+    <div class="activity-content-div">
+      <span class="activity-content"><%= raw activity.content %></span>
+    </div>
+    <div class="activity-timestamp-div">
+      <span class="activity-timestamp"><%= time_ago_in_words activity.created_at %> ago.</span>
+    </div>
+    <div class="activity-likes-div">
+      <div class="like-unlike-form-div" id="like-unlike-form-div-<%= activity.id %>">
+        <% if activity.liked_by? current_user %>
+          <%= render 'shared/unlike', activity: activity %>
+        <% else %>
+          <%= render 'shared/like', activity: activity %>
+        <% end %>
+      </div>
+      <div class="like-count-div">
+        <span class="like-count" id="like-count-<%= activity.id %>">
+          <%= activity.likes.count %>
+        </span>
+      </div>
+    </div>
+  </div>
+</li>

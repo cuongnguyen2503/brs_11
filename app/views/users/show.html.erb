@@ -13,7 +13,14 @@
     <section class="stats">
       <%= render 'shared/stats' %>
     </section>
-
     <%= render 'follow_form' %>
+  </aside>
+  <aside class="col-md-8">
+    <% if @activities.any? %>
+      <ol class="list-activities">
+        <%= render @activities %>
+        <%= will_paginate @activities %>
+      </ol>
+    <% end %>
   </aside>
 </div>

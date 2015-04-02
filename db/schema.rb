@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(version: 20150331090219) do
 
+  create_table "activities", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.string   "content",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
+
   create_table "books", force: :cascade do |t|
     t.string   "title",          limit: 255
     t.date     "publish_date"
@@ -40,6 +49,17 @@ ActiveRecord::Schema.define(version: 20150331090219) do
 
   add_index "favorites", ["book_id"], name: "index_favorites_on_book_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.integer  "activity_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "likes", ["activity_id"], name: "index_likes_on_activity_id", using: :btree
+  add_index "likes", ["user_id", "activity_id"], name: "index_likes_on_user_id_and_activity_id", unique: true, using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "read_statuses", force: :cascade do |t|
     t.string   "status",     limit: 255
@@ -81,9 +101,12 @@ ActiveRecord::Schema.define(version: 20150331090219) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "activities", "users"
   add_foreign_key "books", "categories"
   add_foreign_key "favorites", "books"
   add_foreign_key "favorites", "users"
+  add_foreign_key "likes", "activities"
+  add_foreign_key "likes", "users"
   add_foreign_key "read_statuses", "books"
   add_foreign_key "read_statuses", "users"
 end

@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
 
-  get '/users/:id/:show_type' => 'users#show'
+  get '/users/:id/:show_type' => 'relationships#index'
 
   resources :relationships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 
   resources :categories
 
