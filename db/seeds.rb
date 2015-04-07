@@ -56,3 +56,8 @@ Activity.create!(user: user2, content: content)
 href = user_path user2
 content = "#{user3.name} follow <a class='activity-content-link' href='#{href}'>#{user2.name}</a>"
 Activity.create!(user: user3, content: content)
+
+Request.create!(user: first_user, title: "Request 1", content: "abcd 123456", solve: "solved")
+Request.create!(user: first_user, title: "Request 2", content: "Can you gimme this book?")
+Request.create!(user: user2, title: "Request 3", content: "New book pls", solve: "solved")
+Request.create!(user: user2, title: "Request 4", content: "Pls add this book")

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :read_statuses, dependent: :destroy
   has_many :activities, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :requests, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
