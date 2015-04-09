@@ -1,0 +1,10 @@
+<% if current_user.favorite? book %>
+  <span class="favorite">
+    <%= link_to "Remove favorite", current_user.favorite_of(book), method: :delete, remote: true %>
+  </span>
+<% else %>
+  <span class="favorite">
+    <%= link_to "Favorite", favorites_path(current_user.favorites.build, book_id: book.id),
+                method: :post, remote: true %>
+  </span>
+<% end %>

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :activities, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :requests, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -43,5 +44,23 @@ class User < ActiveRecord::Base
 
   def unlike_activity activity
     likes.find_by(user_id: id, activity_id: activity.id).destroy
+  end
+
+  def favorite_book book
+    favorites.create user_id: id, book_id: book.id
+  end
+
+  def remove_favorite favorite
+    favorites.find_by(id: favorite.id).destroy
+  end
+
+  def favorite? book
+    book_ids = favorites.pluck :book_id
+    book_ids.include? book.id
+  end
+
+  def favorite_of book
+    favorite_list = favorites.where book_id: book.id
+    favorite_list.first
   end
 end
