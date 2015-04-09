@@ -1,0 +1,30 @@
+<% provide :title, "Request of #{@request.user.name}" %>
+
+<div class="row">
+  <aside class="col-md-8 col-md-offset-2">
+    <div class="request-title-div">
+      <span class="request-title">
+        <%= link_to @request.title, admin_request_path(@request) %>
+        <span class="request-solve-sign" id="request-solve-sign-<%= @request.id %>">
+          <%= "(#{@request.solve})" %>
+        </span>
+      </span>
+    </div>
+    <div class="request-solve-div" id="request-solve-div-<%= @request.id %>">
+      <%= render 'solve', request: @request %>
+    </div>
+    <div class="request-user-div">
+      <span class="request-user">
+        <%= "by " %>
+        <%= link_to @request.user.name, user_path(@request.user) %>
+      </span>
+    </div>
+    <div class="request-content-div">
+      <span class="request-content">
+        <%= @request.content %>
+      </span>
+    </div>
+    <div class="request-images-div">
+    </div>
+  </aside>
+</div>

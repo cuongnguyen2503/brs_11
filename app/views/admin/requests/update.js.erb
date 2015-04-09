@@ -1,0 +1,2 @@
+$("#request-solve-sign-<%= @request.id %>").html("(<%= @request.solve %>)")
+$("#request-solve-div-<%= @request.id %>").html("<%= escape_javascript(render 'admin/requests/solve', request: @request) %>")

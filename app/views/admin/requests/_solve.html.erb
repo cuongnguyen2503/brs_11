@@ -1,0 +1,8 @@
+<% if request.pending? %>
+  <div class="request-solve-solved-div">
+    <%= link_to "Solved", admin_request_path(request, solve: "solved"), method: :put, remote: true %>
+  </div>
+  <div class="request-solve-cancel-div">
+    <%= link_to "Cancel", admin_request_path(request, solve: "canceled"), method: :put, remote: true %>
+  </div>
+<% end %>

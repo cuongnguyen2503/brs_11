@@ -183,15 +183,36 @@ aside {
 
 .request-title-div {
   display: inline-block;
-  width: 93%;
+  width: 80%;
 }
 
 .request-title {
   font-size: 1.2em;
 }
 
+.request-solve-div {
+  display: inline-block;
+  width: 15%;
+  float: right;
+}
+
+.request-solve-solved-div {
+  display: inline-block;
+  float: left;
+}
+
+.request-solve-cancel-div {
+  display: inline-block;
+  float: right;
+}
+
 .request-cancel-div {
   display: inline-block;
+  float: right;
+}
+
+.request-user {
+  font-style: italic;
 }
 
 .request-content-div {
