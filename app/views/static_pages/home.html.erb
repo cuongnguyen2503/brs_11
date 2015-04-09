@@ -8,7 +8,7 @@
           <%= gravatar_for current_user %>
         </div>
         <div class="user-name-div">
-          <span class="user-name"><%= current_user.name %></span>
+          <span class="user-name"><%= link_to current_user.name, user_path(current_user) %></span>
         </div>
       </section>
       <section class="stats">

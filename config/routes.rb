@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   get 'home' => 'static_pages#home'
 
   get 'help' => 'static_pages#help'
@@ -8,11 +9,14 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    resources :requests, except: [:edit, :update]
+  end
 
   get '/users/:id/:show_type' => 'relationships#index'
 
   resources :relationships, only: [:create, :destroy]
+
   resources :likes, only: [:create, :destroy]
 
   resources :categories

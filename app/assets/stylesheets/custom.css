@@ -170,6 +170,38 @@ aside {
   text-decoration: underline;
 }
 
+/* requests */
+.request-show {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.requests {
+  list-style: none;
+  padding: 0;
+}
+
+.request-title-div {
+  display: inline-block;
+  width: 93%;
+}
+
+.request-title {
+  font-size: 1.2em;
+}
+
+.request-cancel-div {
+  display: inline-block;
+}
+
+.request-content-div {
+  margin-left: 10px;
+}
+
+.request-content {
+  font-size: 1.1em;
+}
+
 /* miscellaneous */
 
 .users li {

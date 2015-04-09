@@ -1,0 +1,11 @@
+<section class="user_info">
+  <div class="gravatar">
+    <%= gravatar_for @user %>
+  </div>
+  <div class="user-name-div">
+    <span class="user-name"><%= link_to @user.name, user_path(@user) %></span>
+  </div>
+</section>
+<section class="stats">
+  <%= render 'shared/stats' %>
+</section>
