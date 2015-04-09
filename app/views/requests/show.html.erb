@@ -12,10 +12,12 @@
       </span>
     </div>
     <div class="request-cancel-div">
-      <span class="request-cancel">
-        <%= link_to "Cancel", user_request_path(@user, @request),
-                    method: :delete, data: {confirm: "Are you sure?"} %>
-      </span>
+      <% if @request.pending? %>
+        <span class="request-cancel">
+          <%= link_to "Cancel", user_request_path(@user, @request),
+                      method: :delete, data: {confirm: "Are you sure?"} %>
+        </span>
+      <% end %>
     </div>
     <div class="request-content-div">
       <span class="request-content">
