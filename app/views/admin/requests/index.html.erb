@@ -1,0 +1,15 @@
+<% provide :title, "Requests" %>
+
+<div class="row">
+  <aside class="col-md-8 col-md-offset-2">
+    <div class="list-requests-div">
+      <% if @requests.any? %>
+        <h2>Requests</h2>
+        <ol class="requests">
+          <%= render @requests %>
+          <%= will_paginate @requests %>
+        </ol>
+      <% end %>
+    </div>
+  </aside>
+</div>
