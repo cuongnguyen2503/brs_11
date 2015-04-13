@@ -1,5 +1,6 @@
 <li>
   <span><%= link_to book.title, book_path(book) %></span>
+  <%= image_tag book.document.url(:thumbnail) %>
   <span><%= book.author %></span>
   <span><%= book.publish_date %></span>
   <span><%= book.number_of_page %></span>
