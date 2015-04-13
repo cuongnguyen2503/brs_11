@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402084616) do
+ActiveRecord::Schema.define(version: 20150413070523) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -23,13 +23,17 @@ ActiveRecord::Schema.define(version: 20150402084616) do
   add_index "activities", ["user_id"], name: "index_activities_on_user_id", using: :btree
 
   create_table "books", force: :cascade do |t|
-    t.string   "title",          limit: 255
+    t.string   "title",                 limit: 255
     t.date     "publish_date"
-    t.string   "author",         limit: 255
-    t.integer  "number_of_page", limit: 4
-    t.integer  "category_id",    limit: 4
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "author",                limit: 255
+    t.integer  "number_of_page",        limit: 4
+    t.integer  "category_id",           limit: 4
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.string   "document_file_name",    limit: 255
+    t.string   "document_content_type", limit: 255
+    t.integer  "document_file_size",    limit: 4
+    t.datetime "document_updated_at"
   end
 
   add_index "books", ["category_id"], name: "index_books_on_category_id", using: :btree
@@ -85,8 +89,8 @@ ActiveRecord::Schema.define(version: 20150402084616) do
     t.integer  "user_id",    limit: 4
     t.string   "content",    limit: 255
     t.string   "solve",      limit: 255, default: "pending"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "title",      limit: 255
   end
 
