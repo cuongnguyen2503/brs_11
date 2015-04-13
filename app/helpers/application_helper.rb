@@ -6,5 +6,9 @@ module ApplicationHelper
     else
       "#{page_title} | #{base_title}"
     end
+  end
+
+  def domain
+  	domain = "http://localhost:3000"
   end		
 end

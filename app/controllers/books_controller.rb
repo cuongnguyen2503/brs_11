@@ -41,6 +41,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find params[:id]
+    @books = Book.all.limit(10).order created_at: :DESC
     @readstatus = ReadStatus.latest current_user.id, @book.id
     @status = @readstatus.first.status if @readstatus.present?
   end
