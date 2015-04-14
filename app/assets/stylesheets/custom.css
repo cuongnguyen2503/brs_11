@@ -223,9 +223,20 @@ aside {
   font-size: 1.1em;
 }
 
+/* book */
+
+.listed-book {
+  padding-left: 0px;
+  margin-left: 20px;
+}
+
 /* miscellaneous */
 
 .users li {
     overflow: auto;
     padding: 10px 0;
+}
+
+.none-style-list {
+  list-style: none;
 }
