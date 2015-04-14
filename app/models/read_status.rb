@@ -7,4 +7,6 @@ class ReadStatus < ActiveRecord::Base
 
   scope :latest, -> (user_id, book_id) {where(user_id: user_id, book_id: book_id).order('created_at DESC')}
 
+  scope :history, -> user {where(user: user).order('created_at DESC')}
+
 end

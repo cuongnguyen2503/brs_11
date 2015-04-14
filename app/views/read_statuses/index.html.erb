@@ -1,0 +1,11 @@
+<% provide :title, 'My History' %>
+<div>
+  <h1>Showing History</h1>
+  <div>
+    <%= will_paginate %>
+    <ol>
+      <%= render @read_statuses %>
+    </ol>
+    <%= will_paginate %>
+  </div>
+</div>

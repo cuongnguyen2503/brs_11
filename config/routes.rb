@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :read_statuses
 
+  get 'history' => 'read_statuses#index'
+
   resources :favorites, only: [:create, :destroy]
 
   namespace :admin do
