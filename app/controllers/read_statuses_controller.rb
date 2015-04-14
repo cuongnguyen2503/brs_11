@@ -1,5 +1,9 @@
 class ReadStatusesController < ApplicationController
 
+  def index
+    @read_statuses = ReadStatus.history(current_user).paginate page: params[:page], per_page: 50
+  end
+
   def create
     @read_status = ReadStatus.create status_params
     if @read_status.save

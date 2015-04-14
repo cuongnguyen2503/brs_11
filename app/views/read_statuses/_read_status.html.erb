@@ -1,0 +1,6 @@
+<li>
+  <span><%= read_status.created_at %></span>
+  <span><%= read_status.status %></span>
+  <% book = Book.find read_status.book_id %>
+  <span><%= link_to book.title, book %></span>
+</li>
