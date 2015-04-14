@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_books, through: :favorites, source: :book
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

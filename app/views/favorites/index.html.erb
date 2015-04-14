@@ -1,0 +1,18 @@
+<% provide :title, "Favorite books of #{@user.name}" %>
+
+<div class="row">
+  <aside class="col-md-4">
+    <%= render 'shared/user_info' %>
+  </aside>
+  <aside class="col-md-8">
+    <div class="favorite-book-list-div">
+      <% if @favorite_books.any? %>
+        <h2>Favorite books</h2>
+        <ol class="listed-book none-style-list">
+          <%= render @favorite_books %>
+          <%= will_paginate @favorite_books %>
+        </ol>
+      <% end %>
+    </div>
+  </aside>
+</div>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :requests, except: [:edit, :update]
+    resources :favorites, only: [:index]
   end
 
   get '/users/:id/:show_type' => 'relationships#index'

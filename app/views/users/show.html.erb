@@ -11,7 +11,7 @@
         <% if @user == current_user %>
           <li><%= link_to "Requests", user_requests_path(@user) %></li>
         <% end %>
-        <li><%= link_to "Favourite books", '#' %></li>
+        <li><%= link_to "Favourite books", user_favorites_path(@user) %></li>
       </ul>
     </div>
     <div class="list-activities-div">
