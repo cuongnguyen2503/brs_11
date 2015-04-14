@@ -25,7 +25,10 @@ Rails.application.routes.draw do
 
   resources :read_statuses
 
+  resources :favorites, only: [:create, :destroy]
+
   namespace :admin do
+    root 'static_pages#home'
     resources :users, only: :destroy
     resources :requests, only: [:index, :show, :update]
   end

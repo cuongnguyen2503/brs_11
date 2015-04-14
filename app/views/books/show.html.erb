@@ -15,6 +15,9 @@
         <%= render partial: 'read_statuses/mark_as_read', locals: {message: "reading"} %>
         <%= render partial: 'read_statuses/mark_as_read', locals: {message: "read"} %>
       <% end %>
+      <div id="favorite-div">
+        <%= render 'favorite', book: @book %>
+      </div>
   </div>
 </div>
 <h3><%= @book.number_of_page %></h3>
