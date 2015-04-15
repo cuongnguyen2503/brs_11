@@ -240,3 +240,7 @@ aside {
 .none-style-list {
   list-style: none;
 }
+
+.reviews {
+  margin-bottom: 50px;
+}

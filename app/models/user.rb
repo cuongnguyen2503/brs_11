@@ -9,9 +9,8 @@ class User < ActiveRecord::Base
   has_many :requests, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_books, through: :favorites, source: :book
+  has_many :reviews, dependent: :destroy
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 

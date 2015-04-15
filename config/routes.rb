@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'reviews/new'
+
+  get 'reviews/create'
+
   devise_for :users
 
   get 'home' => 'static_pages#home'
@@ -22,7 +26,9 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :books
+  resources :books do
+    resources :reviews
+  end
 
   resources :read_statuses
 

@@ -10,6 +10,16 @@
     </iframe>  
     <h3><%= @book.number_of_page %></h3>
     <h3><%= @book.publish_date %></h3>
+    <div class="reviews">
+      <h3> Latest reviews </h3>
+      <% for review in @reviews do %>
+        <%= gravatar_for(review.user, size: 50) %>
+        <span><%= review.content %></span>
+      <% end %>
+    </div>
+    <div class="review-form">
+      <%= render 'shared/review_form' %>
+    </div>
   </div>
   <div class = "col-md-4">
     <%= label_tag @status %>
