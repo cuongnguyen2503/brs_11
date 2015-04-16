@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [:create, :destroy]
 
+  resources :reviews, only: [:create, :update, :destroy]
+
   namespace :admin do
     root 'static_pages#home'
     resources :users, only: :destroy

@@ -1,34 +1,51 @@
-<% provide(:title, @book.title) %>
-
+<% provide :title, 'Review book' %>
 <div class="row">
-  <div class="col-md-8">
-    <h1><%= @book.title %></h1>
-    <h2><%= @book.author %></h2>
-    <% book_url = @book.document.url %>
-    <iframe src="https://docs.google.com/viewer?url=<%= domain %><%= book_url %>&embedded=true" width="100%" height="800" >
-      <p>Your browser does not support iframes.</p>
-    </iframe>  
-    <h3><%= @book.number_of_page %></h3>
-    <h3><%= @book.publish_date %></h3>
-  </div>
-  <div class = "col-md-4">
-    <%= label_tag @status %>
-    <% if @status == "read" %>
-      <%= render partial: 'read_statuses/mark_as_read', locals: {message: "reading"} %>
-    <% elsif @status == "reading" %>
-      <%= render partial: 'read_statuses/mark_as_read', locals: {message: "read"} %>
-    <% else %>
-      <%= render partial: 'read_statuses/mark_as_read', locals: {message: "reading"} %>
-      <%= render partial: 'read_statuses/mark_as_read', locals: {message: "read"} %>
-    <% end %>
-    <div class="newest">
-      <h2> Newest </h2>
-      <% for book in @books do %>
-        <li><%= link_to book.title, book_path %></li>
-      <% end %>
-      <div id="favorite-div">
-        <%= render 'favorite', book: @book %>
-      </div>      
+  <div class="col-md-12">
+    <div class="col-md-10">
+      <div class="field-name-div book-title">Title</div>
+      <div class="field-value-div book-title"><%= @book.title %></div>
+      <div class="field-name-div book-author">Author</div>
+      <div class="field-value-div book-author"><%= @book.author %></div>
+      <div class="field-name-div book-num-page">Number of pages</div>
+      <div class="field-value-div book-num-page"><%= @book.number_of_page %></div>
+      <div class="field-name-div book-publish-date">Publish date</div>
+      <div class="field-value-div book-publish-date"><%= @book.publish_date %></div>
+      <% book_url = @book.document.url %>
+      <iframe src="https://docs.google.com/viewer?url=<%= domain %><%= book_url %>&embedded=true" width="100%" height="800" >
+        <p>Your browser does not support iframes.</p>
+      </iframe> 
     </div>
-  </div>  
+    <div class="col-md-2">
+        <%= label_tag @status %>
+        <% if @status == "read" %>
+          <%= render partial: 'read_statuses/mark_as_read', locals: {message: "reading"} %>
+        <% elsif @status == "reading" %>
+          <%= render partial: 'read_statuses/mark_as_read', locals: {message: "read"} %>
+        <% else %>
+          <%= render partial: 'read_statuses/mark_as_read', locals: {message: "reading"} %>
+          <%= render partial: 'read_statuses/mark_as_read', locals: {message: "read"} %>
+        <% end %>
+        <div id="favorite-div">
+          <%= render 'favorite', book: @book %>
+        </div>
+    </div>
+  </div>
+  <div class="newest">
+    <h2> Newest </h2>
+    <% for book in @books do %>
+      <li><%= link_to book.title, book_path %></li>
+    <% end %>    
+  </div>
+  <div class="col-md-10">
+    <b>Picture present for book</b>
+  </div>
+  <div class="col-md-10" id="review-list-wrapper">
+    <span class="review-mark">Reviews</span>
+    <div id="review-list-div">
+      <%= render 'reviews/review_list', reviews: @reviews %>
+    </div>
+    <div id="review-creating-div">
+      <%= render 'reviews/review_form', book: @book %>
+    </div>
+  </div>
 </div>

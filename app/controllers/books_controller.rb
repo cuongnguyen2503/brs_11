@@ -44,6 +44,8 @@ class BooksController < ApplicationController
     @books = Book.order(created_at: :desc).limit 10
     @readstatus = ReadStatus.latest current_user.id, @book.id
     @status = @readstatus.first.status if @readstatus.present?
+    @reviews = @book.reviews.order created_at: :desc
+    @reviews = @reviews.paginate page: params[:page], per_page: 10
   end
 
   def destroy
