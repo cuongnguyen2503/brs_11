@@ -1,0 +1,12 @@
+<% if @review.errors.any? %>
+  $("#review-errors").remove();
+  var errorElements = ""
+  <% @review.errors.full_messages.each do |error| %>
+    errorElements += "<span><%= error %></span>"; 
+  <% end %>
+  var errorContainer = "<div id='review-errors'>" + errorElements + "</div>";
+  $("#review-creating-div").append(errorContainer);
+<% else %>
+  $("#review-list-ol").find("li").first().before("<%= escape_javascript(render 'reviews/review', review: @review) %>");
+  $("#review-creating-div").html("<%= escape_javascript(render 'reviews/review_form', book: @book) %>")
+<% end %>

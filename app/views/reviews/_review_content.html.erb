@@ -1,0 +1,24 @@
+<div class="review-user-div" id="review-user-div-<%= review.id %>">
+  <span>
+    <%= link_to review.user.name, user_path(review.user) %>
+    <%= "rates this book #{review.rating_point} point." %>
+  </span>
+</div>
+<div class="review-edit-delete-div">
+  <% if current_user.own_review? review %>
+    <span>
+      <%= link_to "Edit", "#", id: "edit-link" %>
+      |
+      <%= link_to "Delete", review_path(review), method: :delete, data: {confirm: "Are you sure?"},
+                                                 remote: true %>
+    </span>
+  <% end %>
+</div>
+<div class="review-content-div" id="review-content-div-<%= review.id %>">
+  <%= review.content %>
+</div>
+<% if current_user.own_review? review %>
+  <div id="review-update-div">
+    <%= render 'reviews/review_update_form', review: review %>
+  </div>
+<% end %>

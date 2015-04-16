@@ -14,4 +14,16 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+  $("#review-list-wrapper").on('click', '#edit-link', function(event){
+    event.preventDefault();
+    $("#review-update-div").show();
+  });
+  $("#review-list-wrapper").on('click', '#review-cancel-button', function(event){
+    event.preventDefault();
+    $("#review-update-div").hide();
+  });
+});

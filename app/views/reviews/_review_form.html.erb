@@ -1,0 +1,11 @@
+<% unless current_user.reviewed? book %>
+  <span>Write review for this book</span>
+
+  <%= form_for(current_user.reviews.build, remote: true) do |f| %>
+    <%= f.hidden_field :book_id, value: book.id %>
+    <%= f.label :rating_point, class: "rating-label" %>
+    <%= f.select :rating_point, (1..10).to_a, {}, class: "rating-selector" %>
+    <%= f.text_area :content, class: "form-control" %>
+    <%= f.submit "Post", class: "button btn btn-primary" %>
+  <% end %>
+<% end %>

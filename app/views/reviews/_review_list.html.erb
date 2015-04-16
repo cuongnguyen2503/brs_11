@@ -1,0 +1,6 @@
+<% if reviews.any? %>
+  <ol class="none-style-list" id="review-list-ol">
+    <%= render reviews %>
+  </ol>
+  <%= will_paginate reviews %>
+<% end %>

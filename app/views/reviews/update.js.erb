@@ -1,0 +1,11 @@
+<% if @review.errors.any? %>
+  $("#review-errors").remove();
+  var errorElements = ""
+  <% @review.errors.full_messages.each do |error| %>
+    errorElements += "<span><%= error %></span>"; 
+  <% end %>
+  var errorContainer = "<div id='review-errors'>" + errorElements + "</div>";
+  $("#review-update-div").append(errorContainer);
+<% else %>
+  $("#review-show-<%= @review.id %>").html("<%= escape_javascript(render 'reviews/review_content', review: @review) %>")
+<% end %>

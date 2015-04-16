@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :requests, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_books, through: :favorites, source: :book
+  has_many :reviews, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -63,5 +64,13 @@ class User < ActiveRecord::Base
   def favorite_of book
     favorite_list = favorites.where book_id: book.id
     favorite_list.first
+  end
+
+  def reviewed? book
+    reviews.find_by(book_id: book.id).present?
+  end
+
+  def own_review? review
+    reviews.find_by(id: review.id).present?
   end
 end
