@@ -11,4 +11,8 @@ module ApplicationHelper
   def domain
     domain = "http://localhost:3000"
   end 
+
+  def current_user?(user)
+    user == current_user
+  end  
 end

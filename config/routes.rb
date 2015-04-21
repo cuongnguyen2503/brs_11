@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   resources :books
 
+  resources :comments
+
   resources :read_statuses
 
   get 'history' => 'read_statuses#index'

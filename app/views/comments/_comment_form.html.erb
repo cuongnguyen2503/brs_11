@@ -1,0 +1,5 @@
+<%= form_for current_user.comments.build, remote: true do |f| %>
+  <%= f.hidden_field :review_id, value: review.id %>
+  <%= f.text_area :content, class: "form-control" %>
+  <%= f.submit "Post", class: "button btn btn-primary" %>
+<% end %>

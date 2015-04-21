@@ -320,3 +320,7 @@ aside {
 .none-style-list {
   list-style: none;
 }
+
+.comment-review {
+  margin-bottom: 50px;
+}

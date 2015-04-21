@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414043642) do
+ActiveRecord::Schema.define(version: 20150417013234) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -43,6 +43,17 @@ ActiveRecord::Schema.define(version: 20150414043642) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "content",    limit: 255
+    t.integer  "user_id",    limit: 4
+    t.integer  "review_id",  limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "comments", ["review_id"], name: "index_comments_on_review_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -130,6 +141,8 @@ ActiveRecord::Schema.define(version: 20150414043642) do
 
   add_foreign_key "activities", "users"
   add_foreign_key "books", "categories"
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "users"
   add_foreign_key "favorites", "books"
   add_foreign_key "favorites", "users"
   add_foreign_key "likes", "activities"

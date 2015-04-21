@@ -15,10 +15,53 @@
   <% end %>
 </div>
 <div class="review-content-div" id="review-content-div-<%= review.id %>">
-  <%= review.content %>
+  <%= review.content %> 
+  <div class="list_comments">
+    <%= review.comments.count %> comments
+    <% review.comments.each do |comment| %>  
+      <%= render "reviews/comment", comment: comment %>
+      <div class="update-form update-comment-form-<%= comment.id %>">
+        <%= render 'comments/update_comment_form', comment: comment %>
+      </div> 
+      <script>
+        $('.update-form').hide();
+        var num = 1;
+        $('.showUpdateCommentForm-<%= comment.id %>').on('click', function () {
+          if (num % 2 == 0){
+            $('.update-comment-form-<%= comment.id %>').hide();
+          }
+          else {
+            $('.update-comment-form-<%= comment.id %>').show();
+          }
+          num += 1;
+        })
+      </script>            
+    <% end %>
+  </div>
+  <div class="showCommentForm-<%= review.id %>">
+    write comments
+  </div>
+  <div class="comment-form comment-form-<%= review.id %>">
+    <%= render 'comments/comment_form', review: review %>
+  </div>    
 </div>
 <% if current_user.own_review? review %>
   <div id="review-update-div">
     <%= render 'reviews/review_update_form', review: review %>
   </div>
 <% end %>
+
+<script>
+  $('.comment-form').hide();
+  var num = 1;
+  $('.showCommentForm-<%= review.id %>').on('click', function () {
+    if (num % 2 == 0){
+      $('.comment-form-<%= review.id %>').hide();
+    }
+    else {
+      $('.comment-form-<%= review.id %>').show();
+    }
+    num += 1;
+  })
+</script>
+
